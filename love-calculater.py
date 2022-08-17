@@ -17,7 +17,7 @@ count_love = names_lower_l + names_lower_o + names_lower_v + names_lower_e2
 count_result = int(str(count_true) + str(count_love))
 if count_result < 10 or count_result > 90:
     print(f'Your score is {count_result}, you go together like coke and mentos.')
-elif count_result >= 40 and count_result <= 50:
+elif 40 <= count_result <= 50:
     print(f'Your score is {count_result}, you are alright together.')
 else:
     print(f'Your score is {count_result}.')
