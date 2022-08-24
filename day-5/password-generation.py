@@ -20,7 +20,7 @@ letters_in_symbols = ''.join(map(str, random_symbols))
 final_password = letters_in_password + letters_in_number + letters_in_symbols
 print(final_password)
 
-# harder mod № 1 with characters not in order
+# harder mode № 1 with characters not in order
 mixed_final_password = ''.join(random.sample(final_password, len(final_password)))
 print(mixed_final_password)
 
@@ -34,7 +34,7 @@ for character in range(1, amount_of_symbols + 1):
     password += random.choice(symbols)
 print(password)
 
-# harder mod № 2 with characters not in order
+# harder mode № 2 with characters not in order
 list_password = list(password)
 random.shuffle(list_password)
 our_password = ''.join(list_password)
