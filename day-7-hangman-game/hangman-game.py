@@ -56,9 +56,9 @@ stages = ['''
 =========
 ''']
 
-word_list = ["aardvark", "baboon", "camel"]
+word_list = ["aardvark", "baboon", "camel", "raccoon"]
 chosen_word = random.choice(word_list)
-print(chosen_word)
+lives = 6
 
 display = []
 for letter in chosen_word:
@@ -71,5 +71,14 @@ while "_" in display:
         letter = chosen_word[position]
         if letter == guess:
             display[position] = letter
-    print(display)
-print('You win!')
+    if guess not in chosen_word:
+        lives -= 1
+        if lives == 0:
+            print(stages[0])
+            print('You lose!')
+            break
+    print(f"{' '.join(display)}")
+    if "_" not in display:
+        print('You win!')
+        break
+    print(stages[lives])
