@@ -1,7 +1,7 @@
 import string
 
 alphabet = list(string.ascii_lowercase)
-#direction = input('Type "encode" to encrypt, type "code" to decrypt:\n')
+direction = input('Type "encode" to encrypt, type "decode" to decrypt:\n')
 text = input('Type your message:\n').lower()
 shift = int(input('Type the shift number:\n'))
 
@@ -22,4 +22,19 @@ def encrypt(text, shift):
     print(f'The encoded text is "{cipher_text}".')
 
 
-encrypt(text, shift)
+def decrypt(text, shift):
+    original_text_list = []
+    for x in text:
+        index = alphabet.index(x)
+        shift_index = index - shift
+        original_letter = alphabet[shift_index]
+        original_text_list += original_letter
+    original_text = ''.join(original_text_list)
+    print(f'The decoded text is "{original_text}".')
+
+
+if direction == 'encode':
+    encrypt(text, shift)
+else:
+    decrypt(text, shift)
+
