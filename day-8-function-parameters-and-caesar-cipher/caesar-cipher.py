@@ -35,6 +35,7 @@ def decrypt(text, shift):
 
 if direction == 'encode':
     encrypt(text, shift)
-else:
+elif direction == 'decode':
     decrypt(text, shift)
-
+else:
+    print('Invalid enter, reboot program!')
