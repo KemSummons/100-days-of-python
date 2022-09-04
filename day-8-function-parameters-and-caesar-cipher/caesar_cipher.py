@@ -3,7 +3,7 @@ import string
 alphabet = list(string.ascii_lowercase)
 direction = input('Type "encode" to encrypt, type "decode" to decrypt:\n')
 while direction != 'encode' and direction != 'decode':
-   direction = input('Type "encode" to encrypt, type "decode" to decrypt:\n')
+    direction = input('Type "encode" to encrypt, type "decode" to decrypt:\n')
 text = input('Type your message:\n').lower()
 shift = int(input('Type the shift number:\n'))
 
@@ -39,4 +39,3 @@ if direction == 'encode':
     encrypt(text, shift)
 else:
     decrypt(text, shift)
-
