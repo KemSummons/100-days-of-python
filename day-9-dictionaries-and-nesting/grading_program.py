@@ -10,16 +10,12 @@ student_grades = {}
 
 for key in student_scores:
     if student_scores[key] > 90:
-        student_scores[key] = "Outstanding"
-        student_grades[key] = student_scores[key]
+        student_grades[key] = "Outstanding"
     elif student_scores[key] > 80:
-        student_scores[key] = "Exceeds Expectations"
-        student_grades[key] = student_scores[key]
+        student_grades[key] = "Exceeds Expectations"
     elif student_scores[key] > 70:
-        student_scores[key] = "Acceptable"
-        student_grades[key] = student_scores[key]
+        student_grades[key] = "Acceptable"
     else:
-        student_scores[key] = "Fail"
-        student_grades[key] = student_scores[key]
+        student_grades[key] = "Fail"
 
 print(student_grades)
