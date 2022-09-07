@@ -1,9 +1,9 @@
 from art import logo
+import os
 
 print(logo)
 print('Welcome to the secret auction!')
 
-player_list = []
 continuation_of_auction = True
 dictionary_of_betting = {}
 while continuation_of_auction:
@@ -11,9 +11,9 @@ while continuation_of_auction:
     player_bet = float(input('What is your bet?\n$ '))
 
     dictionary_of_betting[player_name] = player_bet
-    player_list.append(dictionary_of_betting)
 
     another_player = input('Are there any other players? Type "yes" or "no".\n').lower()
+    os.system('cls')
     if another_player == 'no':
         continuation_of_auction = False
 
