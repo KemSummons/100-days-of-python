@@ -5,11 +5,11 @@ print('Welcome to the secret auction!')
 
 player_list = []
 continuation_of_auction = True
+dictionary_of_betting = {}
 while continuation_of_auction:
     player_name = input('What is your name?\n')
     player_bet = float(input('What is your bet?\n$ '))
 
-    dictionary_of_betting = {}
     dictionary_of_betting[player_name] = player_bet
     player_list.append(dictionary_of_betting)
 
@@ -17,15 +17,10 @@ while continuation_of_auction:
     if another_player == 'no':
         continuation_of_auction = False
 
-len_of_player_list = len(player_list)
-for elem in range(1, len_of_player_list):
-    player_list[0].update(player_list[elem])
+bet = 0
+for player in dictionary_of_betting:
+    if bet < dictionary_of_betting[player]:
+        bet = dictionary_of_betting[player]
 
-print(player_list[0])
-
-
-for player in player_list[0]:
-    bet = 0
-    if player_list[0][player] > bet:
-        bet = player_list[0][player]
-print(f'Winner is with bet $ {bet}!')
+name_winner = list(dictionary_of_betting.keys())[list(dictionary_of_betting.values()).index(bet)]
+print(f'Winner is {name_winner} with bet $ {bet}!')
