@@ -2,9 +2,14 @@ import random
 from art import logo
 import os
 
-intro = input('Do you want to play blackjack? Type "y" for play or "n" for exit. ')
-if intro == 'n':
-    exit()
+
+def intro():
+    intro = input('Do you want to play blackjack? Type "y" for play or "n" for exit. ')
+    if intro == 'y':
+        os.system('cls')
+        blackjack()
+    else:
+        exit()
 
 
 def blackjack():
@@ -38,12 +43,7 @@ def blackjack():
             print(f'Dealer cards are: [{dealer_card_1}, *]')
             if player_total > 21 and dealer_total <= 21:
                 print('You have over much points! You lose!')
-                intro = input('Do you want to play blackjack? Type "y" for play or "n" for exit. ')
-                if intro == 'n':
-                    exit()
-                else:
-                    os.system('cls')
-                    blackjack()
+                intro()
         else:
             while dealer_total < 17:
                 dealer_another_card = random.choice(cards)
@@ -53,36 +53,17 @@ def blackjack():
             print(f'Dealer cards are: {dealer_list} - {dealer_total} points')
             if dealer_total > 21:
                 print('You win!')
-                one_more_game = input('Do you want to play more? Type "y" for play or "n" for exit. ')
-                if one_more_game == 'n':
-                    exit()
-                else:
-                    os.system('cls')
-                    blackjack()
+                intro()
             elif player_total < dealer_total:
                 print('You lose!')
                 one_more_game = input('Do you want to play more? Type "y" for play or "n" for exit. ')
-                if one_more_game == 'n':
-                    exit()
-                else:
-                    os.system('cls')
-                    blackjack()
+                intro()
             elif player_total > dealer_total:
                 print('You win!')
-                one_more_game = input('Do you want to play more? Type "y" for play or "n" for exit. ')
-                if one_more_game == 'n':
-                    exit()
-                else:
-                    os.system('cls')
-                    blackjack()
+                intro()
             else:
                 print('Draw!')
-                one_more_game = input('Do you want to play more? Type "y" for play or "n" for exit. ')
-                if one_more_game == 'n':
-                    exit()
-                else:
-                    os.system('cls')
-                    blackjack()
+                intro()
 
 
-blackjack()
+intro()
