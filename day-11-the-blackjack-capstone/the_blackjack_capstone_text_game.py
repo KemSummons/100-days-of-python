@@ -17,7 +17,6 @@ def blackjack():
     player_total = 0
     for elem in range(len(player_list)):
         player_total += player_list[elem]
-
     dealer_card_1 = random.choice(cards)
     dealer_card_2 = random.choice(cards)
     dealer_list = []
@@ -25,7 +24,6 @@ def blackjack():
     dealer_total = 0
     for elem in range(len(dealer_list)):
         dealer_total += dealer_list[elem]
-
     print(f'Player cards are: {player_list} - {player_total} points')
     print(f'Dealer cards are: [{dealer_card_1}, *]')
 
