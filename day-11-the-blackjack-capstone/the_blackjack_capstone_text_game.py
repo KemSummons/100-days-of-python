@@ -56,7 +56,6 @@ def blackjack():
                 intro()
             elif player_total < dealer_total:
                 print('You lose!')
-                one_more_game = input('Do you want to play more? Type "y" for play or "n" for exit. ')
                 intro()
             elif player_total > dealer_total:
                 print('You win!')
