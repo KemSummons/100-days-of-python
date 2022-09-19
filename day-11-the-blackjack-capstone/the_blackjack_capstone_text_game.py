@@ -39,9 +39,13 @@ def blackjack():
             player_another_card = random.choice(cards)
             player_list.append(player_another_card)
             player_total += player_another_card
+            for elem in player_list:
+                ace = 11
+                if elem == ace and player_total > 21:
+                    player_total -= 10
             print(f'Player cards are: {player_list} - {player_total} points')
             print(f'Dealer cards are: [{dealer_card_1}, *]')
-            if player_total > 21 and dealer_total <= 21:
+            if player_total > 21:
                 print('You have over much points! You lose!')
                 intro()
         else:
@@ -49,6 +53,10 @@ def blackjack():
                 dealer_another_card = random.choice(cards)
                 dealer_list.append(dealer_another_card)
                 dealer_total += dealer_another_card
+                for elem in dealer_list:
+                    ace = 11
+                    if elem == ace and dealer_total > 21:
+                        dealer_total -= 10
             print(f'Player cards are: {player_list} - {player_total} points')
             print(f'Dealer cards are: {dealer_list} - {dealer_total} points')
             if dealer_total > 21:
