@@ -1,4 +1,4 @@
-#Print is Your Friend
+# Print is Your Friend
 # we have useless variables 'pages' and 'word_per_page' with value '0'
 # because in strings № 6 and 7 we have variables 'pages' and 'word_per_page' with input
 # so no need declare a variables before input
