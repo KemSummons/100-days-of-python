@@ -10,11 +10,11 @@ def report():
 
 
 def kinds_of_coffee():
-    wish = input('What would you like? (espresso/latte/cappuccino): ')
+    wish = input('What would you like? (espresso - $1.5/latte - $2.5/cappuccino - $3): ')
     if wish == 'off':
         exit()
-    elif wish == 'report':
-        print(report())
+    # elif wish == 'report':
+    #     return report()
     elif wish == 'espresso':
         return 'espresso'
     elif wish == 'latte':
@@ -27,7 +27,7 @@ def kinds_of_coffee():
             return kinds_of_coffee()
 
 
-# if kinds_of_coffee() == 'espresso' or kinds_of_coffee() == 'latte' or kinds_of_coffee() == 'cappuccino':
+#if kinds_of_coffee() == 'espresso' or kinds_of_coffee() == 'latte' or kinds_of_coffee() == 'cappuccino':
 def check_resources(resources, coffee_type):
     if resources['water'] > MENU[f'{coffee_type}']['ingredients']['water']:
         return True
@@ -39,7 +39,18 @@ def check_resources(resources, coffee_type):
         return False
 
 
-print(check_resources(resources, kinds_of_coffee()))
+required_resources = check_resources(resources, kinds_of_coffee())
+print(required_resources)
+
+
+def finished_coffee(resources, coffee_type):
+    if required_resources:
+        resources['water'] -= MENU[f'{coffee_type}']['ingredients']['water']
+        resources['milk'] -= MENU[f'{coffee_type}']['ingredients']['milk']
+        resources['coffee'] -= MENU[f'{coffee_type}']['ingredients']['coffee']
+
+        return
+
 
 
 # coffee_machine_on = True
