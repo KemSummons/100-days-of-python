@@ -2,60 +2,54 @@ from menu_of_coffee import *
 money = 0
 
 
-def report():
-    water = resources['water']
-    milk = resources['milk']
-    coffee = resources['coffee']
-    return f'Water: {water}ml\nMilk: {milk}ml\nCoffee: {coffee}ml\nMoney: ${money}'
+def sufficient_resources(order_ingredients):
+    for item in order_ingredients:
+        if order_ingredients[item] > resources[item]:
+            print(f'Sorry there is not enough {item}.')
+            return False
+    return True
 
 
-def kinds_of_coffee():
-    wish = input('What would you like? (espresso - $1.5/latte - $2.5/cappuccino - $3): ')
-    if wish == 'off':
-        exit()
-    # elif wish == 'report':
-    #     return report()
-    elif wish == 'espresso':
-        return 'espresso'
-    elif wish == 'latte':
-        return 'latte'
-    elif wish == 'cappuccino':
-        return 'cappuccino'
-    else:
-        print('Invalid enter. Try again.')
-        while wish != 'off' or wish != 'report' or wish != 'espresso' or wish != 'latte' or wish != 'cappuccino':
-            return kinds_of_coffee()
+def add_coins():
+    print("Please insert coins.")
+    total = int(input('How many quarters?: ')) - 0.25
+    total += int(input("how many dimes?: ")) * 0.1
+    total += int(input("how many nickles?: ")) * 0.05
+    total += int(input("how many pennies?: ")) * 0.01
+    return total
 
 
-#if kinds_of_coffee() == 'espresso' or kinds_of_coffee() == 'latte' or kinds_of_coffee() == 'cappuccino':
-def check_resources(resources, coffee_type):
-    if resources['water'] > MENU[f'{coffee_type}']['ingredients']['water']:
-        return True
-    if resources['milk'] > MENU[f'{coffee_type}']['ingredients']['milk']:
-        return True
-    if resources['coffee'] > MENU[f'{coffee_type}']['ingredients']['coffee']:
+def is_transaction_successful(money_received, drink_cost):
+    if money_received >= drink_cost:
+        difference = round(money_received - drink_cost, 2)
+        print(f'Here is ${difference} in change.')
+        global money
+        money += drink_cost
         return True
     else:
+        print("Sorry that's not enough money. Money refunded.")
         return False
 
 
-required_resources = check_resources(resources, kinds_of_coffee())
-print(required_resources)
+def make_coffee(drink_name, order_ingredients):
+    for item in order_ingredients:
+        resources[item] -= order_ingredients[item]
+    print(f"Here is your {drink_name} ☕️. Enjoy!")
 
 
-def finished_coffee(resources, coffee_type):
-    if required_resources:
-        resources['water'] -= MENU[f'{coffee_type}']['ingredients']['water']
-        resources['milk'] -= MENU[f'{coffee_type}']['ingredients']['milk']
-        resources['coffee'] -= MENU[f'{coffee_type}']['ingredients']['coffee']
-
-        return
-
-
-
-# coffee_machine_on = True
-# while coffee_machine_on:
-#     kinds_of_coffee()
-#     check_resources(resources, kinds_of_coffee())
-#     # if check_resources():
-#     print(check_resources(resources, kinds_of_coffee()))
+coffee_machine_on = True
+while coffee_machine_on:
+    wish = input('What would you like? (espresso - $1.5/latte - $2.5/cappuccino - $3): ')
+    if wish == 'off':
+        coffee_machine_on = False
+    elif wish == 'report':
+        print(f"Water: {resources['water']}ml")
+        print(f"Milk: {resources['milk']}ml")
+        print(f"Coffee: {resources['coffee']}g")
+        print(f"Money: ${money}")
+    else:
+        drink = MENU[wish]
+        if sufficient_resources(drink["ingredients"]):
+            payment = add_coins()
+            if is_transaction_successful(payment, drink["cost"]):
+                make_coffee(wish, drink["ingredients"])
