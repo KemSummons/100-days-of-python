@@ -1,11 +1,15 @@
-class User:
-    def __init__(self, name, follower_count, description, country):
-        self.name = name
-        self.followers = follower_count
-        self.descr = description
-        self.country = country
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
 
+question_bank = []
+for elem in question_data:
+    question_text = elem['text']
+    question_answer = elem['answer']
+    new_question = Question(question_text, question_answer)
+    question_bank.append(new_question)
 
-user_1 = User('Instagram', 346, 'Social media platform', 'United States')
-
-print(f'{user_1.name}, a {user_1.descr}, from {user_1.country}')
+quiz = QuizBrain(question_bank)
+while quiz.still_has_questions():
+    quiz.next_question()
+print(f"You've completed the quiz. \nYour final score was: {quiz.score}/{quiz.question_number}.")
