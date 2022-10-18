@@ -1,4 +1,3 @@
-import turtle
 from turtle import *
 import random
 
@@ -6,7 +5,7 @@ timmy = Turtle()
 timmy.shape('turtle')
 timmy.speed(500)
 timmy.pensize(10)
-turtle.colormode(255)
+colormode(255)
 
 
 def change_color():
