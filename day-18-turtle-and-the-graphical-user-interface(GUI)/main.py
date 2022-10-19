@@ -4,23 +4,18 @@ import random
 colormode(255)
 
 timmy = Turtle(shape='turtle')
-timmy.speed(5)
+timmy.speed('fastest')
 y_shift = 0
+timmy.penup()
 
 
 def one_step():
-    timmy.color(random.choice(color_list))
-    timmy.pendown()
-    timmy.dot(20)
-    timmy.penup()
+    timmy.dot(20, random.choice(color_list))
     timmy.forward(50)
-    global steps
-    steps -= 1
 
 
 def one_row():
     timmy.hideturtle()
-    timmy.penup()
     timmy.setx(-200)
     timmy.showturtle()
     for i in range(10):
@@ -31,12 +26,14 @@ def one_row():
     timmy.showturtle()
 
 
-steps = 30
+steps = 5
 while steps > 0:
     for row in range(5):
         y_shift += 50
         one_row()
-
+        steps -= 1
+        if steps <= 0:
+            break
     timmy.hideturtle()
 
 screen = Screen()
