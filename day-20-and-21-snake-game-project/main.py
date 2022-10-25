@@ -1,31 +1,26 @@
-from turtle import Turtle, Screen
+from turtle import Screen
+from snake import Snake
+import time
 
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor('black')
 screen.title('Snake game')
-x_position = [0, -20, -40]
+screen.tracer(0)
 
+snake = Snake()
 
-for part_of_snake in range(0, len(x_position)):
-    new_part = Turtle(shape='square')
-    new_part.color('white')
-    new_part.penup()
-    new_part.goto(x_position[part_of_snake], 0)
+screen.listen()
+screen.onkey(snake.up, 'Up')
+screen.onkey(snake.down, 'Down')
+screen.onkey(snake.left, 'Left')
+screen.onkey(snake.right, 'Right')
 
+game_is_on = True
+while game_is_on:
+    screen.update()
+    time.sleep(0.4)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    snake.move()
 
 screen.exitonclick()
